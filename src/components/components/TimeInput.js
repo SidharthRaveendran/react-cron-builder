@@ -34,7 +34,7 @@ export default class TimeInput extends PureComponent {
                 {...this.props}
                 styles={{
                     container: () => ({
-                        minWidth: 120,
+                        minWidth: 140,
                         maxWidth: 400,
                         marginRight: 5
                     })
