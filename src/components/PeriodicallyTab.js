@@ -17,14 +17,6 @@ const hoursOptions = toOptions(range(0, 24));
 
 const isMinutes = (activeTime: string) => activeTime === MINUTES;
 
-const timeInputProps = {
-    styles: {
-        container: () => ({
-            minWidth: 110
-        })
-    }
-};
-
 export default class PeriodicallyTab extends PresetTab {
     constructor(props: PresetTabProps, ctx: Object) {
         super(props, ctx);
@@ -88,7 +80,6 @@ export default class PeriodicallyTab extends PresetTab {
                                     onChange={this.selectMinutes}
                                     isMulti={isMultiple(minutes)}
                                     isMenuOpen
-                                    {...timeInputProps}
                                 />
                             </Then>
                             <Else>
@@ -98,7 +89,6 @@ export default class PeriodicallyTab extends PresetTab {
                                     isMulti={isMultiple(hours)}
                                     onChange={this.selectHours}
                                     isMenuOpen
-                                    {...timeInputProps}
                                 />
                             </Else>
                         </If>

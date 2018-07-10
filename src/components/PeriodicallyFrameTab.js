@@ -33,14 +33,6 @@ const hoursOptions = toOptions(range(0, 24)).map((option: Option) => {
     }
 });
 
-const timeInputProps = {
-    styles: {
-        container: () => ({
-            minWidth: 110
-        })
-    }
-};
-
 const defaultHours = (hours: string, defaultValue: string) => {
     const [fromDefault, toDefault] = defaultValue.split('-');
     const value = defaultTo(hours, defaultValue);
@@ -118,7 +110,6 @@ export default class PeriodicallyFrameTab extends PresetTab {
                             onChange={this.selectMinutes}
                             value={this.getMinutes()}
                             isMulti={this.isMinutesMultiple()}
-                            {...timeInputProps}
                         />
                     </div>
                 </div>
@@ -135,7 +126,6 @@ export default class PeriodicallyFrameTab extends PresetTab {
                             options={hoursOptions}
                             value={hoursOptions.filter(option => option.value === hoursFrom)[0]}
                             onChange={this.onHoursChange('hoursFrom')}
-                            {...timeInputProps}
                         />
                     </div>
                     <div>
@@ -148,7 +138,6 @@ export default class PeriodicallyFrameTab extends PresetTab {
                             options={hoursOptions}
                             value={hoursOptions.filter(option => option.value === hoursTo)[0]}
                             onChange={this.onHoursChange('hoursTo')}
-                            {...timeInputProps}
                         />
                     </div>
                 </div>
