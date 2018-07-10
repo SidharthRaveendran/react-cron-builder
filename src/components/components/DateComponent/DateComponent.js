@@ -52,6 +52,14 @@ export default class DateComponent extends PureComponent {
         }
     };
 
+    getDefaultValue = (values: any, options: Array<Option>) => {
+        if (values instanceof Array) {
+            return values.map(val => options.filter(option => option.value === val)[0])
+        }
+
+        return values
+    };
+
     render() {
         const {styleNameFactory, children} = this.props;
         const {activeComponent} = this.state;
@@ -66,6 +74,7 @@ export default class DateComponent extends PureComponent {
                     {Children.map(children, (child: React.Children) => {
                         const {value, onChange} = child.props;
                         const {getOptions} = child.type;
+                        const options = getOptions();
                         return (
                             <If condition={child.type.className === activeComponent} >
                                 <Then>
@@ -74,8 +83,8 @@ export default class DateComponent extends PureComponent {
                                     >
                                         <Select
                                             styles={{container: () => ({minWidth: 120})}}
-                                            defaultValue={value[0]}
-                                            options={getOptions()}
+                                            defaultValue={this.getDefaultValue(value, options)}
+                                            options={options}
                                             isMulti
                                             captureMenuScroll={false}
                                             onChange={this.onChange(onChange)}

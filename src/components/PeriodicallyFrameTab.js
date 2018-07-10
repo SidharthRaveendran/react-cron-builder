@@ -88,9 +88,18 @@ export default class PeriodicallyFrameTab extends PresetTab {
         }
     };
 
+    getMinutes = () => {
+        const {minutes} = this.state;
+        if (this.isMinutesMultiple() && minutes instanceof Array) {
+            return minutes.map(minute => minutesOptions.filter(option => option.value === minute)[0])
+        }
+
+        return minutesOptions.filter(option => option.value === minutes)[0]
+    }
+
     render() {
         const {styleNameFactory} = this.props;
-        const {minutes, hoursFrom, hoursTo, dayOfWeek, dayOfMonth, month} = this.state;
+        const {hoursFrom, hoursTo, dayOfWeek, dayOfMonth, month} = this.state;
         return (
             <div
                 {...styleNameFactory('preset')}
@@ -107,7 +116,7 @@ export default class PeriodicallyFrameTab extends PresetTab {
                         <TimeInput
                             options={minutesOptions}
                             onChange={this.selectMinutes}
-                            value={minutes}
+                            value={this.getMinutes()}
                             isMulti={this.isMinutesMultiple()}
                             {...timeInputProps}
                         />
@@ -124,7 +133,7 @@ export default class PeriodicallyFrameTab extends PresetTab {
                         </div>
                         <TimeInput
                             options={hoursOptions}
-                            value={hoursFrom}
+                            value={hoursOptions.filter(option => option.value === hoursFrom)[0]}
                             onChange={this.onHoursChange('hoursFrom')}
                             {...timeInputProps}
                         />
@@ -137,7 +146,7 @@ export default class PeriodicallyFrameTab extends PresetTab {
                         </div>
                         <TimeInput
                             options={hoursOptions}
-                            value={hoursTo}
+                            value={hoursOptions.filter(option => option.value === hoursTo)[0]}
                             onChange={this.onHoursChange('hoursTo')}
                             {...timeInputProps}
                         />

@@ -43,14 +43,14 @@ export default class FixedTimeTab extends PresetTab {
                         <TimeInput
                             options={hoursOptions}
                             onChange={this.selectHours}
-                            defaultValue={hours}
+                            value={hours.map(hour => hoursOptions.filter(option => option.value === hour)[0])}
                         />
                     </div>
                     <div>
                         <TimeInput
                             options={minutesOptions}
                             onChange={this.selectMinutes}
-                            defaultValue={minutes}
+                            value={minutes.map(minute => minutesOptions.filter(option => option.value === minute)[0])}
                         />
                     </div>
                 </div>

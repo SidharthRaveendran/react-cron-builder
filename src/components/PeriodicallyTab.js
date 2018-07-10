@@ -48,6 +48,24 @@ export default class PeriodicallyTab extends PresetTab {
         }
     };
 
+    getMinutes = () => {
+        const {minutes} = this.state;
+        if (this.isMultiple(minutes) && minutes instanceof Array) {
+            return minutes.map(minute => minutesOptions.filter(option => option.value === minute)[0])
+        }
+
+        return minutesOptions.filter(option => option.value === minutes)[0]
+    }
+
+    getHours = () => {
+        const {hours} = this.state;
+        if (this.isMultiple(hours) && hours instanceof Array) {
+            return hours.map(hour => hoursOptions.filter(option => option.value === hour)[0])
+        }
+
+        return hoursOptions.filter(option => option.value === hours)[0]
+    }
+
     render() {
         const {styleNameFactory} = this.props;
         const {activeTime, minutes, hours, dayOfWeek, dayOfMonth, month} = this.state;
@@ -66,7 +84,7 @@ export default class PeriodicallyTab extends PresetTab {
                             <Then>
                                 <TimeInput
                                     options={minutesOptions}
-                                    defaultValue={minutes}
+                                    value={this.getMinutes()}
                                     onChange={this.selectMinutes}
                                     isMulti={isMultiple(minutes)}
                                     isMenuOpen
@@ -76,7 +94,7 @@ export default class PeriodicallyTab extends PresetTab {
                             <Else>
                                 <TimeInput
                                     options={hoursOptions}
-                                    defaultValue={hours}
+                                    value={this.getHours()}
                                     isMulti={isMultiple(hours)}
                                     onChange={this.selectHours}
                                     isMenuOpen
