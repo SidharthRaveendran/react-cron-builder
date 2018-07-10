@@ -1,1 +1,2 @@
 .storybook/build/storybook_static
+node_modules/
