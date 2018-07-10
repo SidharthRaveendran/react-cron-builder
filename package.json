@@ -10,11 +10,6 @@
     "url": "https://github.com/one-more/react-cron-builder/issues"
   },
   "homepage": "https://github.com/one-more/react-cron-builder#readme",
-  "peerDependencies": {
-    "lodash": "4.17.2",
-    "prop-types": "15.6.2",
-    "react": "16.4.1"
-  },
   "dependencies": {
     "classnames": "2.2.5",
     "cronstrue": "0.10.3",
