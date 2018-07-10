@@ -26,12 +26,18 @@ export default class TimeInput extends PureComponent {
     };
 
     render() {
-        const {styleNameFactory, value, onChange} = this.props;
+        const {value, onChange} = this.props;
         return (
             <Select
                 {...this.props}
-                {...styleNameFactory('input')}
-                value={parseTimeValue(value)}
+                styles={{
+                    container: () => ({
+                        minWidth: 120,
+                        maxWidth: 400,
+                        marginRight: 5
+                    })
+                }}
+                defaultValue={parseTimeValue(value)}
                 onChange={this.onChange(onChange)}
             />
         )

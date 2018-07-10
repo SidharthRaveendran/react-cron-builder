@@ -43,16 +43,14 @@ export default class FixedTimeTab extends PresetTab {
                         <TimeInput
                             options={hoursOptions}
                             onChange={this.selectHours}
-                            styleNameFactory={styleNameFactory}
-                            value={hours}
+                            defaultValue={hours}
                         />
                     </div>
                     <div>
                         <TimeInput
                             options={minutesOptions}
                             onChange={this.selectMinutes}
-                            styleNameFactory={styleNameFactory}
-                            value={minutes}
+                            defaultValue={minutes}
                         />
                     </div>
                 </div>

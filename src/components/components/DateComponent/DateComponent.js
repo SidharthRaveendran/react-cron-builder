@@ -73,11 +73,10 @@ export default class DateComponent extends PureComponent {
                                         {...styleNameFactory('input')}
                                     >
                                         <Select
-                                            style={{minWidth: 120}}
-                                            value={value}
+                                            styles={{container: () => ({minWidth: 120})}}
+                                            defaultValue={value[0]}
                                             options={getOptions()}
-                                            multi
-                                            autosize
+                                            isMulti
                                             onChange={this.onChange(onChange)}
                                         />
                                     </div>
