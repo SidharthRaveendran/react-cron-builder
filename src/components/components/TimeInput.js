@@ -17,6 +17,7 @@ export default class TimeInput extends PureComponent {
 
     onChange = (onChange: Function) => {
         return (value: any) => {
+            console.log('TimeInput', value) // eslint-disable-line no-console
             if(value instanceof Array) {
                 onChange(getValues(value))
             } else {
@@ -27,6 +28,7 @@ export default class TimeInput extends PureComponent {
 
     render() {
         const {value, onChange} = this.props;
+        console.log('this.props', this.props) // eslint-disable-line no-console
         return (
             <Select
                 {...this.props}

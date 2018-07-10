@@ -37,6 +37,7 @@ export default class DateComponent extends PureComponent {
 
     onChange = (onChange: Function) => {
         return (value: Array<Option>) => {
+            console.log('DateComponent value', value) // eslint-disable-line no-console
             const values = getValues(value);
             const first = head(values);
             if(first === EVERY && values.length > 1) {
@@ -44,8 +45,11 @@ export default class DateComponent extends PureComponent {
             } else {
                 const everyIndex = values.indexOf(EVERY);
                 if(everyIndex !== -1) {
+                    console.log('here', EVERY) // eslint-disable-line no-console
+                    console.log('onChange', onChange) // eslint-disable-line no-console
                     onChange([EVERY])
                 } else {
+                    console.log('here2', values) // eslint-disable-line no-console
                     onChange(values)
                 }
             }
@@ -66,6 +70,12 @@ export default class DateComponent extends PureComponent {
                     {Children.map(children, (child: React.Children) => {
                         const {value, onChange} = child.props;
                         const {getOptions} = child.type;
+                        if (child.type.className === activeComponent) {
+                            console.log('child props', child, child.props) // eslint-disable-line no-console
+                            console.log('Select value', value) // eslint-disable-line no-console
+                            console.log('select getoptions', getOptions()) // eslint-disable-line no-console
+                            console.log('') // eslint-disable-line no-console
+                        }
                         return (
                             <If condition={child.type.className === activeComponent} >
                                 <Then>
