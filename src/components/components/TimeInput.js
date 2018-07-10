@@ -40,6 +40,7 @@ export default class TimeInput extends PureComponent {
                     })
                 }}
                 defaultValue={parseTimeValue(value)}
+                captureMenuScroll={false}
                 onChange={this.onChange(onChange)}
             />
         )

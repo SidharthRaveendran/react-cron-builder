@@ -87,6 +87,7 @@ export default class DateComponent extends PureComponent {
                                             defaultValue={value[0]}
                                             options={getOptions()}
                                             isMulti
+                                            captureMenuScroll={false}
                                             onChange={this.onChange(onChange)}
                                         />
                                     </div>
