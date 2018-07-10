@@ -1,7 +1,6 @@
 // @flow
 
 import React, {PureComponent, Children} from 'react'
-import {If, Then} from 'react-if'
 import {EVERY} from 'data/constants'
 import head from 'lodash/head'
 import type {Option} from 'types/Option'
@@ -75,24 +74,24 @@ export default class DateComponent extends PureComponent {
                         const {value, onChange} = child.props;
                         const {getOptions} = child.type;
                         const options = getOptions();
-                        return (
-                            <If condition={child.type.className === activeComponent} >
-                                <Then>
-                                    <div
-                                        {...styleNameFactory('input')}
-                                    >
-                                        <Select
-                                            styles={{container: () => ({minWidth: 120})}}
-                                            defaultValue={this.getDefaultValue(value, options)}
-                                            options={options}
-                                            isMulti
-                                            captureMenuScroll={false}
-                                            onChange={this.onChange(onChange)}
-                                        />
-                                    </div>
-                                </Then>
-                            </If>
-                        )
+                        if (child.type.className === activeComponent) {
+                            return (
+                                <div
+                                    {...styleNameFactory('input')}
+                                >
+                                    <Select
+                                        styles={{container: () => ({minWidth: 120})}}
+                                        defaultValue={this.getDefaultValue(value, options)}
+                                        options={options}
+                                        isMulti
+                                        captureMenuScroll={false}
+                                        onChange={this.onChange(onChange)}
+                                    />
+                                </div>
+                            )
+                        }
+
+                        return null
                     })}
                 </div>
                 <div

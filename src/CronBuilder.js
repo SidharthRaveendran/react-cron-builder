@@ -2,7 +2,6 @@
 
 import React, {PureComponent} from 'react'
 import BEMHelper from 'react-bem-helper'
-import {If, Then} from 'react-if'
 import {generateCronExpression, parseCronExpression} from 'utils'
 import cronsTrue from 'cronstrue'
 import noop from 'lodash/noop'
@@ -124,21 +123,19 @@ export default class CronBuilder extends PureComponent {
                         Generate cron expression
                     </button>
                 </div>
-                <If condition={!!generatedExpression && showResult}>
-                    <Then>
-                        <div data-result >
-                            <hr
-                                {...styleNameFactory('hr')}
-                            />
-                            <PrettyExpression expression={generatedExpression} />
-                            <div
-                                {...styleNameFactory('result')}
-                            >
-                                {generatedExpression}
-                            </div>
+                {(!!generatedExpression && showResult) &&
+                    <div data-result >
+                        <hr
+                            {...styleNameFactory('hr')}
+                        />
+                        <PrettyExpression expression={generatedExpression} />
+                        <div
+                            {...styleNameFactory('result')}
+                        >
+                            {generatedExpression}
                         </div>
-                    </Then>
-                </If>
+                    </div>
+                }
             </div>
         )
     }

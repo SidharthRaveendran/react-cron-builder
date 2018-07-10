@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react'
-import {If, Then, Else} from 'react-if'
 import {MINUTES} from 'data/constants'
 import {isMultiple, toggleDateType, toOptions, rangeHoursToSingle} from 'utils'
 import range from 'lodash/range'
@@ -72,26 +71,24 @@ export default class PeriodicallyTab extends PresetTab {
                     <div
                         {...styleNameFactory('row', 'main')}
                     >
-                        <If condition={isMinutes(activeTime)}>
-                            <Then>
-                                <TimeInput
-                                    options={minutesOptions}
-                                    value={this.getMinutes()}
-                                    onChange={this.selectMinutes}
-                                    isMulti={isMultiple(minutes)}
-                                    isMenuOpen
-                                />
-                            </Then>
-                            <Else>
-                                <TimeInput
-                                    options={hoursOptions}
-                                    value={this.getHours()}
-                                    isMulti={isMultiple(hours)}
-                                    onChange={this.selectHours}
-                                    isMenuOpen
-                                />
-                            </Else>
-                        </If>
+                        {isMinutes(activeTime) &&
+                            <TimeInput
+                                options={minutesOptions}
+                                value={this.getMinutes()}
+                                onChange={this.selectMinutes}
+                                isMulti={isMultiple(minutes)}
+                                isMenuOpen
+                            />
+                        }
+                        {!isMinutes(activeTime) &&
+                            <TimeInput
+                                options={hoursOptions}
+                                value={this.getHours()}
+                                isMulti={isMultiple(hours)}
+                                onChange={this.selectHours}
+                                isMenuOpen
+                            />
+                        }
                         <div
                             style={{width: 150}}
                         >
