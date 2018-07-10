@@ -24,9 +24,27 @@ export default class FixedTimeTab extends PresetTab {
         this.state.hoursMultiple = true;
     }
 
+    getMinutes = () => {
+        const {minutes} = this.state;
+        if (minutes instanceof Array) {
+            return minutes.map(minute => minutesOptions.filter(option => option.value === minute)[0])
+        }
+
+        return minutesOptions.filter(option => option.value === minutes)[0]
+    }
+
+    getHours = () => {
+        const {hours} = this.state;
+        if (hours instanceof Array) {
+            return hours.map(hour => hoursOptions.filter(option => option.value === hour)[0])
+        }
+
+        return hoursOptions.filter(option => option.value === hours)[0]
+    }
+
     render() {
         const {styleNameFactory} = this.props;
-        const {minutes, hours, dayOfWeek, dayOfMonth, month} = this.state;
+        const {dayOfWeek, dayOfMonth, month} = this.state;
         return (
             <div
                 {...styleNameFactory('preset')}
@@ -43,14 +61,14 @@ export default class FixedTimeTab extends PresetTab {
                         <TimeInput
                             options={hoursOptions}
                             onChange={this.selectHours}
-                            value={hours.map(hour => hoursOptions.filter(option => option.value === hour)[0])}
+                            value={this.getHours()}
                         />
                     </div>
                     <div>
                         <TimeInput
                             options={minutesOptions}
                             onChange={this.selectMinutes}
-                            value={minutes.map(minute => minutesOptions.filter(option => option.value === minute)[0])}
+                            value={this.getMinutes()}
                         />
                     </div>
                 </div>
