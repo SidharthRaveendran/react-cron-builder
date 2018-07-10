@@ -47,6 +47,7 @@ module.exports = {
     externals: {
         react: 'react',
         'react-dom': 'react-dom',
-        lodash: 'lodash'
+        lodash: 'lodash',
+        'prop-types': 'prop-types'
     }
 };

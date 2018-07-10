@@ -12,8 +12,8 @@
   "homepage": "https://github.com/one-more/react-cron-builder#readme",
   "peerDependencies": {
     "lodash": "4.17.2",
-    "prop-types": "15.6.0",
-    "react": "15.5.4"
+    "prop-types": "15.6.2",
+    "react": "16.4.1"
   },
   "dependencies": {
     "classnames": "2.2.5",
@@ -59,9 +59,9 @@
     "jest": "17.0.3",
     "normalize.css": "6.0.0",
     "pre-commit": "1.2.2",
-    "react": "15.5.4",
+    "react": "16.4.1",
     "react-addons-test-utils": "15.4.1",
-    "react-dom": "15.5.4",
+    "react-dom": "16.4.1",
     "resolve-url-loader": "2.0.2",
     "style-loader": "0.13.1",
     "stylus": "0.54.5",
