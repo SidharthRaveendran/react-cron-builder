@@ -50,7 +50,9 @@ export default class CronBuilder extends PureComponent {
         this.state = {
             activeIndex,
             Component: components[activeIndex],
-            generatedExpression: ''
+            generatedExpression: '',
+            verboseExpression: '',
+            isValid: true
         };
     }
 
@@ -62,11 +64,25 @@ export default class CronBuilder extends PureComponent {
 
     generateExpression = () => {
         const {onChange} = this.props;
+        const expression = generateCronExpression(this.presetComponent.getExpression())
+        let verboseExpression = '';
+        let isValid = true;
+        try {
+            verboseExpression = cronsTrue.toString(expression);
+        } catch (Error) {
+            verboseExpression = 'Invalid expression';
+            isValid = false;
+        }
+
         this.setState({
-            generatedExpression: generateCronExpression(
-                this.presetComponent.getExpression()
-            )
-        }, () => onChange(this.state.generatedExpression));
+            generatedExpression: expression,
+            verboseExpression,
+            isValid
+        }, () => onChange({
+            expression: this.state.generatedExpression,
+            isValid: this.state.isValid
+        })
+        );
     };
 
     selectTab = (activeIndex: number) => {
@@ -128,26 +144,21 @@ export default class CronBuilder extends PureComponent {
                         <hr
                             {...styleNameFactory('hr')}
                         />
-                        <PrettyExpression expression={generatedExpression} />
+                        <div
+                            {...styleNameFactory('pretty-expression')}
+                        >
+                            {this.state.verboseExpression}
+                        </div>
+                        {this.state.isValid &&
                         <div
                             {...styleNameFactory('result')}
                         >
-                            {generatedExpression}
+                            {this.state.generatedExpression}
                         </div>
+                        }
                     </div>
                 }
             </div>
         )
     }
-}
-
-function PrettyExpression(props: any) {
-    const {expression} = props;
-    return (
-        <div
-            {...styleNameFactory('pretty-expression')}
-        >
-            {cronsTrue.toString(expression)}
-        </div>
-    )
 }
