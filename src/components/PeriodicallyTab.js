@@ -11,7 +11,7 @@ import PresetTab from './PresetTab'
 import type {PresetTabState} from './types/PresetTabState'
 import type {PresetTabProps} from './types/PresetTabProps'
 
-const minutesOptions = toOptions(range(1, 60));
+const minutesOptions = toOptions(range(0, 60));
 const hoursOptions = toOptions(range(0, 24));
 
 const isMinutes = (activeTime: string) => activeTime === MINUTES;
